@@ -3,10 +3,9 @@ title: Kafka学习记录
 date: 2016-10-31 13:46:56
 tags: 消息队列
 ---
-.........
+Apache Kafka是分布式发布-订阅消息系统.......
 <!--more-->
 ## Kafka的基本介绍
-
 Apache Kafka是分布式发布-订阅消息系统。它最初由LinkedIn公司开发，之后成为Apache项目的一部分。具有快速、可扩展、分布式、可复制等特点。Kafka与传统消息系统相比，有以下不同：
 - 它被设计为一个分布式系统，易于向外扩展
 - 它同时为发布和订阅提供高吞吐量
@@ -14,19 +13,19 @@ Apache Kafka是分布式发布-订阅消息系统。它最初由LinkedIn公司�
 - 它将消息持久化到磁盘，因此可用于批量消费
 
 ## 相关概念
-1. topic
+#### 1. topic
 每条发布到Kafka集群的消息都有一个类别，这个类别被称为topic。（物理上不同topic的消息分开存储，逻辑上一个topic的消息虽然保存于一个或多个broker上但用户只需指定消息的topic即可生产或消费数据而不必关心数据存于何处）
 
-2. partition
+#### 2. partition
 parition是物理上的概念，每个topic包含一个或多个partition，创建topic时可指定parition数量。每个partition对应于一个文件夹，该文件夹下存储该partition的数据和索引文件
 
-3. broker
+#### 3. broker
 Kafka集群包含一个或多个服务器，这种服务器被称为broker
 
-4. 生产者
+#### 4. 生产者
 负责发布消息到Kafka broker
 
-5. 消费者
+#### 5. 消费者
 消费消息。每个consumer属于一个特定的consumer group（可为每个consumer指定group name，若不指定group name则属于默认的group）。使用consumer high level API时，同一topic的一条消息只能被同一个consumer group内的一个consumer消费，但多个consumer group可同时消费这一消息。
 
 ## 架构
@@ -62,6 +61,7 @@ zookeeper.connect=localhost:2181
 ```
 
 ## Kafka的常用命令
+```
 #启动zookeeper服务器
 bin/zookeeper-server-start.sh config/zookeeper.properties
 
@@ -79,3 +79,4 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
 
 #从broker拉取数据
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+```

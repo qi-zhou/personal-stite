@@ -3,6 +3,8 @@ title: 用ossec做入侵检测的一个完整示例
 date: 2016-10-26 23:41:46
 tags: 安全
 ---
+...........
+<!--more-->
 
 ```
  sinoiot@sinoiot-172-16-250-3:/var/ossec# ./bin/ossec-logtest -v
