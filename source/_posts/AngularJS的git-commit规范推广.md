@@ -5,10 +5,7 @@ tags: git
 ---
 AngularJS的commit规范在社区中享有威望，用于解决快速生成`release notes`的问题，而且对于统一规范化有促进.
 <!--more-->
-在日常中我们用git来管理代码和进行多人协作开发，为了是我们的项目更加完善没有一定规范是不行的，代码要有代码的规范，协作要有协作的规范。今天就来说说Git中记录`Commit Message`的参考规范。
-
-Git 每次提交代码，都要写 Commit message（提交说明），否则就不允许提交。最重要的是，commit message是给人看的， 应该写的清晰明了，说明本次提交的目的。
-
+在日常中我们用git来管理代码和进行多人协作开发，为了我们的项目更加完善没有一定规范是不行的，代码要有代码的规范，协作要有协作的规范。今天就来说说Git中`Commit Message`的参考规范。
 
 先来看看[AngularJS项目的Commit message](https://github.com/angular/angular.js/commits/master),再回去看看自己的。
 
@@ -17,7 +14,9 @@ Git 每次提交代码，都要写 Commit message（提交说明），否则就�
 - 方便识别不重要的提交
 - 在浏览 Git 历史时提供更多信息
 
-目前，社区有多种`Commit message`的写法规范。本文介绍[Angular 规范](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#heading=h.uyo6cb12dt6w)，这是目前使用最广的写法，比较合理和系统化，并且有配套的工具。
+目前，社区有多种`Commit message`的写法规范。本文介绍[Angular 规范](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#heading=h.uyo6cb12dt6w)，这是目前使用最广的写法，比较合理和系统化，并且有配套的工具,下面是Commitiz工具的使用演示:
+## 使用演示
+![](git-zc-show.gif)
 
 ## commit规范
 Commit Message 格式:每次提交，Commit message 都包括三个部分：Header，Body 和 Footer。
@@ -28,7 +27,7 @@ Commit Message 格式:每次提交，Commit message 都包括三个部分：Head
 <空行>
 <footer>
 ```
-## Header即首行，是可以直接在页面中预览的部分，一共有三个部分`<type>，<scope>，<subject>`，含义分别如下
+## Header即首行，是可以直接在页面中预览的部分，一共有三个部分`<type>，<scope>，<subject>`，含义分别如下:
 #### 1. Type
 - feat：新功能（feature）
 - fix：修补bug
@@ -90,7 +89,7 @@ revert: feat(pencil): add 'graphiteWidth' option
 
 This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
 ```
-Body部分的格式是固定的，必须写成`This reverts commit <hash>`，其中的hash是被撤销 commit 的 SHA 标识符。
+Body部分的格式是固定的，必须写成`This reverts commit <SHA1>`，其中的hash是被撤销 commit 的 SHA1 标识符。
 如果当前`commit`与被撤销的 `commit`，在同一个发布`（release）`里面，那么它们都不会出现在`Change log`里面。如果两者在不同的发布，那么当前 `commit`，会出现在`Change log`的`Reverts`小标题下面。
 
 
@@ -156,11 +155,10 @@ root@kali-slave:~/test# commitizen
 ```
 commitizen init cz-conventional-changelog --save --save-exact
 ```
-上面的`cz-conventional-changelog`就是AngularJS的规范，其它的规范你可以自行到官网上找找看，不行就自己花时间拟定一份吧。此命令帮你完成了下载`cz-conventional-changelog`规范，配置`package.json`(添加依赖和配置应用规范)，想看具体改动打开package.json即可。
+上面的`cz-conventional-changelog`就是AngularJS的规范。此命令帮你完成了下载`cz-conventional-changelog`规范，配置`package.json`(添加依赖和配置应用规范)，想看具体改动打开package.json即可。
 
 ## 使用
-至此就算完整的安装完了，之后在需要`git commit`的地方更换成`git cz`指令即可呼出Commit的交互界面，来step by step的提醒你上面规范的各处该怎么填，实在不明在自己建一个项目练习几次就好了。
-![使用演示](http://mmbiz.qpic.cn/mmbiz/GV9yQEsgTSDTtHn5Y74sxnoVog7AQttZofFBACG5aNZjtdIYtfGVyBKrVibUCtLJysvr80ZyaAJINMpfoB2MdlQ/0?wx_fmt=gif&wxfrom=5&wx_lazy=1&_=5146738)
+至此就算完整的安装完了，之后在需要`git commit`的地方更换成`git cz`指令即可呼出Commit的交互界面，提醒你上面规范的各处该怎么填，实在不明在自己建一个项目练习几次就好了。
 
 ## 生成 Change log
 如果你的所有`Commit`都符合 Angular 格式，那么发布新版本时，`Change log`就可以用脚本自动生成。
@@ -189,5 +187,51 @@ hangelog -p angular -i CHANGELOG.md -w -r 0
 ```
 以后，直接运行下面的命令即可。
 ```
-npm run changelog
+zhouqi@zhouqi ~/code/nagios_plugins $ npm run changelog
+
+> nagios_plugins@2.0.0 changelog /home/zhouqi/code/nagios_plugins
+> conventional-changelog -p angular -i CHANGELOG.md -w -r 0
+
+<a name="2.0.0"></a>
+# 2.0.0 (2016-11-02)
+
+
+### Features
+
+* **fix:** 修复了邮件内容不完整的问题 ([c273e73](http://127.0.0.1:8000/zhouqi/nagios_plugins/commits/c273e73))
+* **function:** 实现了对ES的数据聚合报警 ([abab2b9](http://127.0.0.1:8000/zhouqi/nagios_plugins/commits/abab2b9))
 ```
+
+## 另一种有助于实施规范的方式
+编辑文件`.gitmessage.txt`
+```
+zhouqi@zhouqi ~/code/rtds_gate_test $ cat .gitmessage.txt 
+
+#commit message格式
+#
+#<type>(<scope>): <subject>
+#<BLANK LINE>
+#<body>
+#<BLANK LINE>
+#<footer>
+#------------------------------------------
+#可选的类型
+#
+#Must be one of the following:
+#
+#* feat: A new feature
+#* fix: A bug fix
+#* docs: Documentation only changes
+#* style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+#* refactor: A code change that neither fixes a bug nor adds a feature
+#* perf: A code change that improves performance
+#* test: Adding missing tests
+#* chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
+```
+配置git
+```
+git config  --globle commit.template .gitmessage.txt
+```
+使用的话直接运行`git commit -a`会提供你格式模板
+
+## 另一个方便生成`changelog`的工具，[文档地址](https://www.npmjs.com/package/git-changelog)

@@ -1,6 +1,6 @@
 ---
-title: Kafka学习记录
-date: 2016-10-31 13:46:56
+title: Kafka学习笔记整理
+date: 2016-10-5 13:46:56
 tags: 消息队列
 ---
 Apache Kafka是分布式发布-订阅消息系统.......
@@ -42,7 +42,7 @@ broker.id=0
 port=9092
 
 #当前broker的主机名，可以是IP地址
-host.name=192.168.1.7
+host.name=172.16.3.233
 
 #创建topic时，默认的分区数量
 num.partitions=1
@@ -63,7 +63,7 @@ zookeeper.connect=localhost:2181
 ## Kafka的常用命令
 ```
 #启动zookeeper服务器
-bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/zookeeper-server-start.sh  config/zookeeper.properties
 
 #启动kafka server
 bin/kafka-server-start.sh config/server.properties
