@@ -33,6 +33,9 @@ tags: ELK
 
 -----------
 ## Logstash
+
+--------------
+## Kibana
 #### 新增Timelion
 
 以前以re{Search} 项目介绍过，现在Timelion 作为Kibana原生的核心组件可直接可用。Timelion 提供一个查询表达式和可视化类型让你探索基于时间的数据。
